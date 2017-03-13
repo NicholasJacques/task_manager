@@ -8,7 +8,7 @@ set :root, File.expand_path("..", __dir__)
   end
 
   get '/tasks' do
-    @tasks = ["task1", "task2", "task3"]
+    @tasks = Task.all
     erb :index
   end
 
@@ -21,4 +21,10 @@ set :root, File.expand_path("..", __dir__)
     task.save
     redirect '/tasks'
   end
+
+  get '/tasks/:id' do
+    @task= Task.find(params[:id])
+    erb :show
+  end
+
 end
